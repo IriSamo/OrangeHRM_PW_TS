@@ -6,13 +6,13 @@ test.describe('Login Page', () => {
 
   test('user can navigate to the Login Page', async ({ loginPage }) => {
 
-    await loginPage.expectUrlContains(Endpoint.login);
+    await loginPage.expectToHaveUrl({ contains: Endpoint.login });
   });
 
   test('user can login', async ({ loginPage, dashboardPage }) => {
     await loginPage.loginAs(env.username, env.password);
 
-    await dashboardPage.expectUrlContains(Endpoint.dashboard);
+    await dashboardPage.expectToHaveUrl({ contains: Endpoint.dashboard });
   });
 
 });
