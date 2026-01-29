@@ -1,16 +1,15 @@
 import { test } from '../fixtures/baseFixtures';
 import { env } from '../config/env';
+import { flow } from '../pom/flow';
 
-test('user can fold up and unfold side menu', async ({ loginPage, dashboardPage }) => {
-    await loginPage.loginAs(env.username, env.password);
+test('side menu', async ({ loginPage }) => {
 
-    await dashboardPage.sideMenu.expectSize(256, 720);
-
-    await dashboardPage.sideMenu.clickChevron();
-
-    await dashboardPage.sideMenu.expectSize(83, 720);
-
-    await dashboardPage.sideMenu.clickChevron();
-
-    await dashboardPage.sideMenu.expectSize(256, 720);
+    await flow(loginPage)
+        .loginAs(env.username, env.password)  // → DashboardPage
+        .onSideMenu().expectSize(256, 720)
+        .clickChevron()
+        .expectSize(83, 720)
+        .clickChevron()
+        .expectSize(256, 720)
+        .run();
 });

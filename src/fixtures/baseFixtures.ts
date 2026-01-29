@@ -11,6 +11,7 @@ export const test = baseTest.extend<BaseFixtures>({
 
   loginPage: async ({ page }, use) => {
     await page.goto('/');
+    await page.waitForURL('**/login**');
     
     await use(new LoginPage(page));
   },
@@ -19,5 +20,3 @@ export const test = baseTest.extend<BaseFixtures>({
     await use(new DashboardPage(page));
   },
 });
-
-export { expect } from '@playwright/test';

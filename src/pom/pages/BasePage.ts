@@ -1,7 +1,7 @@
 import { Page, expect } from '@playwright/test';
 import { BaseUi } from '../BaseUi';
 
-  type UrlExpectation =
+type UrlExpectation =
   | { exact: string }
   | { contains: string }
   | { match: RegExp };
@@ -12,7 +12,7 @@ export abstract class BasePage extends BaseUi {
     super(page);
   }
 
-  async expectToHaveUrl(expectation: UrlExpectation): Promise<void> {
+  async expectToHaveUrl(expectation: UrlExpectation): Promise<this> {
     if ('exact' in expectation) {
       await expect(this.page).toHaveURL(expectation.exact);
     } else if ('contains' in expectation) {
@@ -21,5 +21,7 @@ export abstract class BasePage extends BaseUi {
     } else {
       await expect(this.page).toHaveURL(expectation.match);
     }
+
+    return this;
   }
 }

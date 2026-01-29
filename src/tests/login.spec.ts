@@ -1,6 +1,7 @@
 import { test } from '../fixtures/baseFixtures';
 import { env } from '../config/env';
-import { Endpoint } from '../test-data';
+import { Endpoint } from '../test-data'
+import { flow } from '../pom/flow';
 
 test.describe('Login Page', () => {
 
@@ -15,4 +16,15 @@ test.describe('Login Page', () => {
     await dashboardPage.expectToHaveUrl({ contains: Endpoint.dashboard });
   });
 
+  test('login', async ({ loginPage }) => {
+    await (await loginPage
+      .loginAs(env.username, env.password))
+      .expectToHaveUrl({ contains: Endpoint.dashboard });
+  });
+
+  test('login FlowPage', async ({ loginPage }) => {
+    await flow(loginPage).loginAs(env.username, env.password)   // → DashboardPage
+      .expectToHaveUrl({ contains: Endpoint.dashboard })
+      .run();
+  });
 });
