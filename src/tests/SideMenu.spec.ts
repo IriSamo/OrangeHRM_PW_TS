@@ -1,8 +1,8 @@
 import { test } from '../fixtures/baseFixtures';
 import { env } from '../config/env';
 
-test('user can fold up and unfold side menu', async ({ loginPage, dashboardPage }) => {
-    await loginPage.loginAs(env.username, env.password);
+test('user can fold up and unfold side menu', async ({ loginPage }) => {
+    const dashboardPage = await loginPage.loginAs(env.username, env.password);
 
     await dashboardPage.sideMenu.expectSize(256, 720);
 

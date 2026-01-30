@@ -1,9 +1,11 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { BaseComponent } from './BaseComponent';
+import { Route } from '../navigation/Route';
+import { NavigationService } from '../navigation/NavigationService';
 
 export class SideMenu extends BaseComponent {
 
-  constructor(page: Page) {
+  constructor(page: Page, private nav: NavigationService) {
     super(page);
   }
 
@@ -19,12 +21,12 @@ export class SideMenu extends BaseComponent {
     await this.page.waitForTimeout(500);
   }
 
-  async openDashboard(): Promise<void> {
-    await this.menuItem('Dashboard').click();
+  async gotoPIMPage() {
+    return this.nav.navigate(Route.PIM);
   }
 
-  async openAdmin(): Promise<void> {
-    await this.menuItem('Admin').click();
+  async gotoAdminPage() {
+    return this.nav.navigate(Route.Admin);
   }
 
   async expectSize(width: number, height: number): Promise<void> {
@@ -32,5 +34,9 @@ export class SideMenu extends BaseComponent {
 
     expect(size.width).toEqual(width);
     expect(size.height).toEqual(height);
+  }
+
+  goTo<R extends Route>(route: R) {
+    return this.nav.navigate(route);
   }
 }

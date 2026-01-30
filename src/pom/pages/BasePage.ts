@@ -8,6 +8,8 @@ import { BaseUi } from '../BaseUi';
 
 export abstract class BasePage extends BaseUi {
 
+  private get mainTitle() { return this.bySelector('.orangehrm-main-title').or(this.bySelector('.orangehrm-login-title')); }
+
   protected constructor(page: Page) {
     super(page);
   }
@@ -21,5 +23,13 @@ export abstract class BasePage extends BaseUi {
     } else {
       await expect(this.page).toHaveURL(expectation.match);
     }
+  }
+
+  async waitForReady(endpoint: string): Promise<void> {
+  await this.page.waitForURL(new RegExp(endpoint));
+}
+
+  async expectMainTitle(expectedTitle: string): Promise<void> {
+    await expect(this.mainTitle).toHaveText(expectedTitle);
   }
 }

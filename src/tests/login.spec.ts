@@ -9,8 +9,8 @@ test.describe('Login Page', () => {
     await loginPage.expectToHaveUrl({ contains: Endpoint.login });
   });
 
-  test('user can login', async ({ loginPage, dashboardPage }) => {
-    await loginPage.loginAs(env.username, env.password);
+  test('user can login', async ({ loginPage}) => {
+    const dashboardPage = await loginPage.loginAs(env.username, env.password);
 
     await dashboardPage.expectToHaveUrl({ contains: Endpoint.dashboard });
   });

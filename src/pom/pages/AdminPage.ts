@@ -3,11 +3,11 @@ import { BasePageWithHeaderAndSideMenu } from './BasePageWithHeaderAndSideMenu';
 import { registerPage } from '../navigation/pageRegistry';
 import { Route } from '../navigation/Route';
 
-export class DashboardPage extends BasePageWithHeaderAndSideMenu {
+export class AdminPage extends BasePageWithHeaderAndSideMenu {
 
   constructor(page: Page) {
     super(page);
   }
 }
 
-registerPage(Route.Dashboard, DashboardPage);
+registerPage(Route.Admin, AdminPage);

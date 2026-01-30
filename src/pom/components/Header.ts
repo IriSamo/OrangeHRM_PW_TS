@@ -1,5 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import { BaseComponent } from './BaseComponent';
+import { LoginPage } from '../pages/LoginPage';
 
 export class Header extends BaseComponent {
 
@@ -19,8 +20,10 @@ export class Header extends BaseComponent {
     return this.bySelector('.oxd-userdropdown-link').filter({ hasText: 'Logout' });
   }
 
-  async logout(): Promise<void> {
+  async logout(): Promise<LoginPage> {
     await this.userMenuButton.click();
     await this.logoutItem.click();
+
+    return new LoginPage(this.page);
   }
 }
