@@ -29,12 +29,8 @@ export abstract class BaseUi {
     return this.scope.getByPlaceholder(placeholder);
   }
 
-  protected menu(): Locator {
-    return this.scope.getByRole('menubar');
-  }
-
-  protected list(): Locator {
-    return this.scope.getByRole('list');
+  protected navigationByName(name: string): Locator {
+    return this.scope.getByRole('navigation', { name });
   }
 
   protected linkByName(name: string | RegExp): Locator {
@@ -43,6 +39,10 @@ export abstract class BaseUi {
 
   protected bySelector(selector: string): Locator {
     return this.scope.locator(selector);
+  }
+
+  protected byText(text: string): Locator {
+    return this.scope.getByText(text);
   }
 
   protected async elementSize(locator: Locator): Promise<ElementSize> {

@@ -1,9 +1,10 @@
-import { BasePage } from './BasePage';
-import { Header } from '../components/Header';
-import { SideMenu } from '../components/SideMenu';
+import { SideMenu } from "../components/SideMenu";
+import { Header } from "../components/Header";
+import { BasePage } from "./BasePage";
+
 
 export abstract class BasePageWithHeaderAndSideMenu extends BasePage {
 
-    get header(): Header { return new Header(this.page); }
-    get sideMenu(): SideMenu { return new SideMenu(this.page); }
+  readonly header = new Header(this.page);
+  readonly sideMenu = new SideMenu(this.page);
 }

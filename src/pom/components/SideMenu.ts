@@ -3,28 +3,27 @@ import { BaseComponent } from './BaseComponent';
 
 export class SideMenu extends BaseComponent {
 
+  private get chevron(): Locator { return this.button(); }
+
   constructor(page: Page) {
     super(page);
   }
 
   protected createRoot(): Locator {
-    return this.bySelector('nav[aria-label="Sidepanel"]');
+    return this.navigationByName('Sidepanel');
   }
 
-  private chevron(): Locator { return this.button(); }
-  private menuItem(name: string): Locator { return this.linkByName(name); }
+  private menuItem(name: string): Locator {
+    return this.linkByName(name);
+  }
 
   async clickChevron(): Promise<void> {
-    await this.chevron().click();
+    await this.chevron.click();
     await this.page.waitForTimeout(500);
   }
 
-  async openDashboard(): Promise<void> {
-    await this.menuItem('Dashboard').click();
-  }
-
-  async openAdmin(): Promise<void> {
-    await this.menuItem('Admin').click();
+  async clickMenuItem(itemName: string): Promise<void> {
+    await this.menuItem(itemName).click();
   }
 
   async expectSize(width: number, height: number): Promise<void> {
