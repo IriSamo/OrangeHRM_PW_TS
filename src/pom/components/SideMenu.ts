@@ -3,18 +3,14 @@ import { BaseComponent } from './BaseComponent';
 
 export class SideMenu extends BaseComponent {
 
-  private get chevron(): Locator { return this.button(); }
+  private get chevron(): Locator { return this.selector.button(); }
 
   constructor(page: Page) {
-    super(page);
-  }
-
-  protected createRoot(): Locator {
-    return this.navigationByName('Sidepanel');
+    super(page, page.getByRole('navigation', { name: 'Sidepanel' }));
   }
 
   private menuItem(name: string): Locator {
-    return this.linkByName(name);
+    return this.selector.linkByName(name);
   }
 
   async clickChevron(): Promise<void> {
@@ -27,7 +23,7 @@ export class SideMenu extends BaseComponent {
   }
 
   async expectSize(width: number, height: number): Promise<void> {
-    const size = await this.elementSize(this.root);
+    const size = await this.element.elementSize(this.root);
 
     expect(size.width).toEqual(width);
     expect(size.height).toEqual(height);

@@ -1,7 +1,7 @@
 import { Page } from '@playwright/test';
-import { BasePageWithHeaderAndSideMenu } from './BasePageWithHeaderAndSideMenu';
+import { BasePageWithMainLayout } from './BasePageWithMainLayout';
 
-export class DashboardPage extends BasePageWithHeaderAndSideMenu {
+export class DashboardPage extends BasePageWithMainLayout {
 
   constructor(page: Page) {
     super(page);

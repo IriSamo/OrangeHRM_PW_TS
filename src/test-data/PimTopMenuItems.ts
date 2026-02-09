@@ -9,4 +9,6 @@ export enum PimConfigurationMenuItem {
   CustomFields = 'Custom Fields',
   OptionalFields = 'Optional Fields',
   DataImport = 'Data Import',
+  ReportingMethods = 'Reporting Methods',
+  TerminationReasons = 'Termination Reasons',
 }

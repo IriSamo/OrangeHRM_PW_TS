@@ -1,15 +1,11 @@
 import { Locator, Page } from '@playwright/test';
-import { BaseUi } from '../BaseUi';
+import { BaseUi } from '../ui/BaseUi';
 
 export abstract class BaseComponent extends BaseUi {
   protected readonly root: Locator;
 
-  protected constructor(page: Page) {
-    super(page);
-    this.root = this.createRoot();
-  }
-
-  protected abstract createRoot(): Locator;
+protected constructor(page: Page, root: Locator) {
+  super(page, root);
+  this.root = root;
 }
-
-
+}

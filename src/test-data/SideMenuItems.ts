@@ -1,6 +1,14 @@
 export enum SideMenuItem {
-    Dashboard = 'Dashboard',
-    PIM = 'PIM',
+    Leave = 'Leave',
+    Time = 'Time',
+    Recruitment = 'Recruitment',
+    MyInfo = 'My Info',
+    Performance = 'Performance',
     Admin = 'Admin',
-    Configuration = "Configuration",
+    PIM = 'PIM',
+    Dashboard = 'Dashboard',
+    Directory = 'Directory',
+    Maintenance = 'Maintenance',
+    Claims = 'Claims',
+    Buzz = 'Buzz',
 }

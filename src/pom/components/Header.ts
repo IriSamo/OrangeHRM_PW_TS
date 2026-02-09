@@ -3,15 +3,11 @@ import { BaseComponent } from './BaseComponent';
 
 export class Header extends BaseComponent {
 
-  private get userMenuButton(): Locator { return this.bySelector('.oxd-userdropdown-icon'); }
-  private get logoutItem(): Locator { return this.bySelector('.oxd-userdropdown-link').filter({ hasText: 'Logout' }); }
+  private get userMenuButton(): Locator { return this.selector.locator('.oxd-userdropdown-icon'); }
+  private get logoutItem(): Locator { return this.selector.locator('.oxd-userdropdown-link').filter({ hasText: 'Logout' }); }
 
   constructor(page: Page) {
-    super(page);
-  }
-
-  protected createRoot(): Locator {
-    return this.bySelector('header');
+    super(page, page.locator('header'));
   }
 
   async logout(): Promise<void> {

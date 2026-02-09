@@ -32,6 +32,9 @@ export default defineConfig({
   use: {
     baseURL: env.baseUrl,
 
+    locale: 'en-US',
+    extraHTTPHeaders: {'Accept-Language': 'en-US,en;q=0.9'},
+
     headless: !!process.env.CI,
 
     screenshot: 'only-on-failure',
