@@ -6,7 +6,7 @@ import { ElementInfo } from './ElementInfo';
 
 export abstract class BaseUi {
   protected readonly page: Page;
-  protected root?: Locator;
+  protected readonly root?: Locator;
 
   private _selector?: ScopedSelectors;
   private _element?: ElementInfo;

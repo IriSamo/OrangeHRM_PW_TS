@@ -23,7 +23,7 @@ export class SideMenu extends BaseComponent {
   }
 
   async expectSize(width: number, height: number): Promise<void> {
-    const size = await this.element.elementSize(this.root);
+    const size = await this.element.elementSize(this.scope);
 
     expect(size.width).toEqual(width);
     expect(size.height).toEqual(height);
